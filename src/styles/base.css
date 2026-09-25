@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
+@theme {
+  --color-paper: #efe4cf;
+  --color-paper-2: #e4d3b4;
+  --color-ivory: #f8f2e4;
+  --color-ink: #1b1714;
+  --color-ink-2: #2b231d;
+  --color-brown: #4a2e20;
+  --color-red: #b3261e;
+  --color-red-hot: #d8341f;
+  --color-orange: #d17a32;
+  --color-olive: #636329;
+  --color-yellow: #e0b043;
+  --color-stamp: #ff8a1f;
+  --color-muted: #6f6152;
+
+  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --font-serif: 'Libre Baskerville', 'Georgia', serif;
+  --font-type: 'Special Elite', 'Courier New', monospace;
+  --font-hand: 'Permanent Marker', 'Comic Sans MS', cursive;
+  --font-sans: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+}
+
+:root {
+  --paper: var(--color-paper);
+  --ink: var(--color-ink);
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --nav-h: 64px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-print: 0 1px 1px rgb(0 0 0 / 0.15), 0 8px 18px -6px rgb(40 20 10 / 0.45),
+    0 24px 40px -18px rgb(40 20 10 / 0.35);
+
+  /* paper fibre noise, rendered once by the browser */
+  --tex-paper: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .15  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --tex-blotch: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .3  0 0 0 0 .12  0 0 0 .35 -.05'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>");
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: var(--nav-h);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-paper);
+  overflow-x: hidden;
+}
+@supports (overflow-x: clip) {
+  html, body { overflow-x: clip; }
+}
+main, footer { overflow-x: clip; }
+
+body.is-locked {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-ivory);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-red-hot);
+  outline-offset: 4px;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ============================================================
+   SURFACES
+   ============================================================ */
+.paper {
+  background-color: var(--color-paper);
+  background-image: var(--tex-blotch), var(--tex-paper);
+  background-size: 600px 600px, 240px 240px;
+}
+.paper-light {
+  background-color: var(--color-ivory);
+  background-image: var(--tex-paper);
+}
+.dark-stock {
+  background-color: var(--color-ink);
+  background-image: radial-gradient(ellipse at 50% 0%, rgb(90 55 30 / 0.25), transparent 60%),
+    var(--tex-paper);
+  color: var(--color-paper);
+}
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+.t-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: 0.005em;
+}
+.t-serif {
+  font-family: var(--font-serif);
+}
+.t-type {
+  font-family: var(--font-type);
+  letter-spacing: 0.02em;
+}
+.t-hand {
+  font-family: var(--font-hand);
+}
+.t-kicker {
+  font-family: var(--font-type);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* two-colour misregistration: a red plate printed slightly off */
+.misreg {
+  text-shadow: 0.035em 0.025em 0 rgb(179 38 30 / 0.85);
+}
+.misreg-light {
+  text-shadow: -0.03em 0.02em 0 rgb(209 122 50 / 0.55);
+}
+
+.section-pad {
+  padding-inline: var(--gutter);
+  padding-block: clamp(5rem, 12vw, 10rem);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-type);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: '';
+  width: 2.2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* ============================================================
+   GLOBAL FILM GRAIN
+   ============================================================ */
+.grain-layer {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  background-image: var(--noise);
+  background-size: 180px;
+  opacity: 0.085;
+  mix-blend-mode: multiply;
+}
+.fx-full .grain-layer {
+  animation: grain 0.9s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  17% { transform: translate(-3%, 2%); }
+  33% { transform: translate(2%, -4%); }
+  50% { transform: translate(-4%, -1%); }
+  67% { transform: translate(3%, 3%); }
+  83% { transform: translate(-1%, 4%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* vignette + occasional flicker for the whole viewport */
+.vignette-layer {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 89;
+  background: radial-gradient(ellipse at center, transparent 62%, rgb(30 15 5 / 0.28) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
