@@ -9,7 +9,7 @@
 
 /** Paste the Unstop registration link here. Until you do, every Register
  *  button shows a "registration opening soon" state instead of a dead link. */
-export const REGISTRATION_URL = 'PASTE_UNSTOP_URL_HERE'
+export const REGISTRATION_URL = 'https://unstop.com/p/campus-catalyst-2k26-army-institute-of-technology-ait-pune-1754272'
 
 export const LINKS = {
   registration: REGISTRATION_URL,
@@ -62,10 +62,10 @@ export type Prize = {
 }
 
 export const PRIZES: Prize[] = [
-  { place: '1st Prize', amount: 5000, extra: '+ Merchandise', tone: 'gold' },
-  { place: '2nd Prize', amount: 3000, extra: '+ Merchandise', tone: 'silver' },
-  { place: '3rd Prize', amount: 2000, extra: '+ Merchandise', tone: 'bronze' },
-  { place: '4th – 10th', amount: 500, note: 'each', tone: 'plain' },
+  { place: '1st Prize', amount: 2500, extra: '+ Merchandise', tone: 'gold' },
+  { place: '2nd Prize', amount: 1500, extra: '+ Merchandise', tone: 'silver' },
+  { place: '3rd Prize', amount: 1000, extra: '+ Merchandise', tone: 'bronze' },
+  { place: '4th to 10th', amount: 3500, note: 'total', tone: 'plain' },
 ]
 
 /* ---------- PROBLEM STATEMENTS ----------------------------------------- */
